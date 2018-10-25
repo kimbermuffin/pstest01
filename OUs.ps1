@@ -1,29 +1,37 @@
-ECHO "Creating OUs"
+#
+#   Title: OUs.ps1
+# Summary: Adds structure to AD infrastructure
+#  Author: Eric Case
+#    Date: October 2018
+#
+
+Write-Host "Creating OUs"
 New-ADOrganizationalUnit -Name ST_Computers -Path "DC=AD,DC=sparky-tech,DC=com" -Description "FA Computers"
- New-ADOrganizationalUnit -Name Workstations -Path "OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
-  New-ADOrganizationalUnit -Name President -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
-  New-ADOrganizationalUnit -Name Finance -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
-  New-ADOrganizationalUnit -Name HR -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
-  New-ADOrganizationalUnit -Name Sales -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
-  New-ADOrganizationalUnit -Name Legal -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
-  New-ADOrganizationalUnit -Name IT -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
- New-ADOrganizationalUnit -Name Servers -Path "OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
-  New-ADOrganizationalUnit -Name Hyper-V -Path "OU=Servers,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
-  New-ADOrganizationalUnit -Name Exchange -Path "OU=Servers,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name Workstations -Path "OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name President -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name Finance -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name HR -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name Sales -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name Legal -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name IT -Path "OU=Workstations,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name Servers -Path "OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name Hyper-V -Path "OU=Servers,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
+New-ADOrganizationalUnit -Name Exchange -Path "OU=Servers,OU=ST_Computers,DC=AD,DC=sparky-tech,DC=com"
 New-ADOrganizationalUnit -Name ST_Groups -Path "DC=AD,DC=sparky-tech,DC=com" -Description "High Level Security Groups"
 New-ADOrganizationalUnit -Name ST_Privileged_Accounts -Path "DC=AD,DC=sparky-tech,DC=com" -Description "Privileged Accounts"
 New-ADOrganizationalUnit -Name ST_Users -Path "DC=AD,DC=sparky-tech,DC=com" -Description "Non-Privileged Accounts"
-ECHO "Done creating OUs"
-ECHO ""
+Write-Host "Done creating OUs"
+Write-Host ""
 
-ECHO "Creating groups based on department"
+Write-Host "Creating groups based on department"
 New-ADGroup -GroupCategory Security -GroupScope Global -Name President -Path "OU=ST_Groups,DC=AD,DC=sparky-tech,DC=com"
 New-ADGroup -GroupCategory Security -GroupScope Global -Name Finance -Path "OU=ST_Groups,DC=AD,DC=sparky-tech,DC=com"
 New-ADGroup -GroupCategory Security -GroupScope Global -Name HR -Path "OU=ST_Groups,DC=AD,DC=sparky-tech,DC=com"
 New-ADGroup -GroupCategory Security -GroupScope Global -Name Sales -Path "OU=ST_Groups,DC=AD,DC=sparky-tech,DC=com"
 New-ADGroup -GroupCategory Security -GroupScope Global -Name Legal -Path "OU=ST_Groups,DC=AD,DC=sparky-tech,DC=com"
 New-ADGroup -GroupCategory Security -GroupScope Global -Name IT -Path "OU=ST_Groups,DC=AD,DC=sparky-tech,DC=com"
+
 # Create a Leadership group for the President and VPs to access restricted a file share
 New-ADGroup -GroupCategory Security -GroupScope Global -Name Leadership -Path "OU=ST_Groups,DC=AD,DC=sparky-tech,DC=com"
-ECHO "Done creating groups"
-ECHO ""
+Write-Host "Done creating groups"
+Write-Host ""
